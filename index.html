@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Style | Tienda Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="logo">SILVER <span>STYLE</span></div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#nosotros">Misión y Visión</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <button type="button" class="btn-carrito" onclick="toggleCarrito()">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Carrito</span>
+            <strong id="contador-carrito">0</strong>
+        </button>
+    </header>
+
+    <!-- BANNER PRINCIPAL -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>ESTILO URBANO &amp; MINIMALISTA</h1>
+            <p>Poleras esenciales en blanco y negro, pantalones jean clásicos y cortes baggy diseñados para destacar.</p>
+            <a href="#productos" class="btn-principal">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <section id="productos" class="contenedor">
+        <h2 class="titulo-seccion">Nuestros Productos</h2>
+        
+        <div class="filtros">
+            <button type="button" class="filtro-btn activo" onclick="filtrarProductos('todos', this)">Todos</button>
+            <button type="button" class="filtro-btn" onclick="filtrarProductos('poleras', this)">Poleras</button>
+            <button type="button" class="filtro-btn" onclick="filtrarProductos('pantalones', this)">Pantalones</button>
+        </div>
+
+        <div class="grid-productos" id="lista-productos">
+            <!-- Se renderiza dinámicamente con JS -->
+        </div>
+    </section>
+
+    <!-- MISIÓN Y VISIÓN -->
+    <section id="nosotros" class="nosotros">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Identidad Silver Style</h2>
+            <div class="grid-mv">
+                <div class="card-mv">
+                    <i class="fas fa-bullseye icono-mv"></i>
+                    <h3>Misión</h3>
+                    <p>Ofrecer prendas urbanas de excelente calidad, cómodas y versátiles en tonos esenciales y cortes modernos, brindando a nuestros clientes seguridad y autenticidad en cada outfit.</p>
+                </div>
+                <div class="card-mv">
+                    <i class="fas fa-eye icono-mv"></i>
+                    <h3>Visión</h3>
+                    <p>Ser la marca referente de moda urbana y minimalista, reconocida por la durabilidad de nuestras prendas, diseños atemporales y una atención rápida y cercana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <h3>SILVER STYLE</h3>
+            <p>Poleras Blanco &amp; Negro | Pantalones Jean &amp; Negro Baggy</p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp Oficial: <strong>+591 77954453</strong></p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Silver Style. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- CARRITO LATERAL -->
+    <div id="overlay-carrito" class="overlay" onclick="toggleCarrito()"></div>
+    <aside id="panel-carrito" class="carrito-lateral">
+        <div class="carrito-header">
+            <h3><i class="fas fa-receipt"></i> Resumen de tu Pedido</h3>
+            <button type="button" class="cerrar-btn" onclick="toggleCarrito()">&times;</button>
+        </div>
+        
+        <div id="items-carrito" class="carrito-body">
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
+        </div>
+
+        <div class="carrito-footer">
+            <div class="total-row">
+                <span>Total a pagar:</span>
+                <span id="total-carrito">Bs. 0.00</span>
+            </div>
+            <button type="button" class="btn-pagar" onclick="abrirModalPago()">Confirmar y Pagar con QR</button>
+            <button type="button" class="btn-seguir" onclick="toggleCarrito()">Seguir eligiendo prendas</button>
+        </div>
+    </aside>
+
+    <!-- NOTIFICACIÓN FLOTANTE -->
+    <div id="toast-aviso" class="toast-aviso"></div>
+
+    <!-- MODAL DE PAGO QR Y WHATSAPP -->
+    <div id="modal-pago" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModalPago()">&times;</span>
+            <h2>Pago por QR</h2>
+            <p>Escanea el código QR desde tu aplicación bancaria para realizar el pago.</p>
+            
+            <div class="qr-contenedor">
+                <!-- La imagen se carga mediante la variable CODIGO_IMAGEN_QR en script.js -->
+                <img id="imagen-qr" src="QR.jpeg" alt="Código QR de Pago Silver Style">
+            </div>
+
+            <div class="resumen-pago">
+                <p>Monto Total: <strong id="monto-modal">Bs. 0.00</strong></p>
+                <small>Al finalizar la transferencia, presiona el botón verde para enviar tu pedido y comprobante al WhatsApp <strong>77954453</strong>.</small>
+            </div>
+
+            <button type="button" class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
